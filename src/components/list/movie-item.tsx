@@ -1,48 +1,62 @@
 import React from 'react';
 
 export const MovieItem = (props: any) => {
-    const infoMovie = props.infoMovie;
+    const {
+        id,
+        title,
+        imdb_id,
+        overview,
+        genres,
+        revenue,
+        duration,
+        likes,
+        vote_average,
+        vote_count,
+        director,
+        poster_path,
+        release_date,
+    } = props;
 
     return (
         <div className='list__item'>
             <div>
-                <b>ID:</b> {infoMovie.id}
+                <b>ID:</b> {id}
             </div>
             <div>
-                <b>Title:</b> {infoMovie.title}
+                <b>Title:</b> {title}
             </div>
             <div>
-                <b>imdb_id:</b> {infoMovie.imdb_id}
+                <b>imdb_id:</b> {imdb_id}
             </div>
             <div>
-                <b>Overview:</b> {infoMovie.overview}
+                <b>Overview:</b> {overview}
             </div>
             <div>
-                <b>Genres:</b> {infoMovie.genres.join(', ')}
+                <b>Genres:</b> {genres.join(', ')}
             </div>
             <div>
-                <b>Revenue:</b> {infoMovie.revenue}
+                <b>Revenue:</b> {revenue}
             </div>
             <div>
-                <b>Duration:</b> {infoMovie.duration}
+                <b>Duration:</b> {duration}
             </div>
             <div>
-                <b>Likes:</b> {infoMovie.likes}
+                <b>Likes:</b> {likes}
             </div>
             <div>
-                <b>Vote average:</b> {infoMovie.vote_average}
+                <b>Vote average:</b> {vote_average}
             </div>
             <div>
-                <b>Vote count:</b> {infoMovie.vote_count}
+                <b>Vote count:</b> {vote_count}
             </div>
             <div>
-                <b>Director:</b> {infoMovie.director}
+                <b>Director:</b> {director}
             </div>
             <div>
-                <b>Poster:</b> {infoMovie.poster_path}
+                <b>Poster:</b> {poster_path}
             </div>
             <div>
-                <b>Release date:</b> {infoMovie.release_date}
+                <b>Release date:</b> {release_date}
             </div>
         </div>
     );

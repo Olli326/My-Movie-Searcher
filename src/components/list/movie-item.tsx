@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const MovieItem = (props: any) => {
     const {
@@ -16,9 +16,11 @@ export const MovieItem = (props: any) => {
         poster_path,
         release_date,
     } = props;
+    const [isFavor, setFavor] = useState('');
+    const [textBtn, setTextBtn] = useState('Like it');
 
     return (
-        <div className='list__item'>
+        <div className='list__item' data-favor={`${isFavor}`}>
             <div>
                 <b>ID:</b> {id}
             </div>
@@ -58,6 +60,20 @@ export const MovieItem = (props: any) => {
             <div>
                 <b>Release date:</b> {release_date}
             </div>
+
+            <button
+                onClick={() => {
+                    if (isFavor === '') {
+                        setFavor('yes');
+                        setTextBtn("Don't like it");
+                    } else {
+                        setFavor('');
+                        setTextBtn('Like it');
+                    }
+                }}
+            >
+                {`${textBtn}`}
+            </button>
         </div>
     );
 };

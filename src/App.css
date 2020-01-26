@@ -14,9 +14,13 @@
   flex-direction: column;
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: calc(1200px/3 - 66px);
+  flex-basis: calc(1200px/3 - 68px);
   margin: 16px;
   padding: 16px;
   border-radius: 6px;
-  border: 1px solid black;
+  border: 2px solid #9E9E9E;
+}
+
+.list__item[data-favor="yes"] {
+  border-color: #4CAF50;
 }

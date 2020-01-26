@@ -18,7 +18,7 @@ export const MovieItem = (props: any) => {
                 <b>Overview:</b> {infoMovie.overview}
             </div>
             <div>
-                <b>Genres:</b> {infoMovie.genres}
+                <b>Genres:</b> {infoMovie.genres.join(', ')}
             </div>
             <div>
                 <b>Revenue:</b> {infoMovie.revenue}

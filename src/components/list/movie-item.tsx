@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
+import { YES, LIKE_IT, DONT_LIKE_IT } from '../../constants';
 
-export const MovieItem = (props: any) => {
+export type MovieItemT = {
+    id: number;
+    title: string;
+    imdb_id: string;
+    overview: string;
+    genres: string[];
+    revenue: number;
+    duration: number;
+    likes: number;
+    vote_average: number;
+    vote_count: number;
+    director?: string;
+    poster_path?: string;
+    release_date: string;
+};
+
+export const MovieItem = (props: MovieItemT) => {
     const {
         id,
         title,
@@ -16,11 +33,10 @@ export const MovieItem = (props: any) => {
         poster_path,
         release_date,
     } = props;
-    const [isFavor, setFavor] = useState('');
-    const [textBtn, setTextBtn] = useState('Like it');
+    const [isFavor, setFavor] = useState(false);
 
     return (
-        <div className='list__item' data-favor={`${isFavor}`}>
+        <div className='list__item' data-favor={isFavor ? YES : ``}>
             <div>
                 <b>ID:</b> {id}
             </div>
@@ -63,16 +79,10 @@ export const MovieItem = (props: any) => {
 
             <button
                 onClick={() => {
-                    if (isFavor === '') {
-                        setFavor('yes');
-                        setTextBtn("Don't like it");
-                    } else {
-                        setFavor('');
-                        setTextBtn('Like it');
-                    }
+                    setFavor(!isFavor);
                 }}
             >
-                {`${textBtn}`}
+                {isFavor ? DONT_LIKE_IT : LIKE_IT}
             </button>
         </div>
     );

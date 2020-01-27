@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { MovieItem } from './movie-item';
+import { MovieItem, MovieItemT } from './movie-item';
+import { MOVIES_URL } from '../../constants';
 
 export const MovieList = () => {
-    const [infoMovies, setInfoMovies] = useState<any>([]);
+    const [infoMovies, setInfoMovies] = useState<MovieItemT[]>([]);
 
     useEffect(() => {
-        fetch('https://devlab.website/v1/movies')
+        fetch(MOVIES_URL)
             .then(response => response.json())
             .then(json => {
-                setInfoMovies(
-                    json.map((item: any) => {
-                        return <MovieItem {...item} key={item.id} />;
-                    })
-                );
+                setInfoMovies(json);
             });
     }, []);
 
-    return <div className='list'>{infoMovies}</div>;
+    return (
+        <div className='list'>
+            {infoMovies.map(item => {
+                return <MovieItem {...item} key={item.id} />;
+            })}
+        </div>
+    );
 };

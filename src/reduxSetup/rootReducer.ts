@@ -1,6 +1,5 @@
-import { MOVIES_ADD, FAV_ADD, FAV_REMOVE } from './actionsTypes';
+import { MOVIES_ADD, FAV_ADD } from './actionsTypes';
 
-//const initialState: RootStore = { list: [], favorite: [] };
 const initialState: RootStore = { list: [] };
 
 const actionHanlder = new Map<string, RootReducer>([

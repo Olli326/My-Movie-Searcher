@@ -15,7 +15,6 @@ type MoviesList = {
 };
 
 type RootStore = { list: MoviesList[] };
-//type RootStore = { list: MoviesList[]; favorite: number[] };
 
 type Action<T> = { type: string; payload: T };
 

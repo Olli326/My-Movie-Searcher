@@ -1,7 +1,11 @@
-.App {
+/*.App {
   width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}*/
+body {
+  padding: 0;
+  margin: 0;
 }
 
 .list {

@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
-import { YES, LIKE_IT, DONT_LIKE_IT } from '../../constants';
+import { useDispatch } from 'react-redux';
+import { addFavorite } from '../../reduxSetup/actions';
+import { MOVIES_URL } from '../../constants';
 
-export type MovieItemT = {
-    id: number;
-    title: string;
-    imdb_id: string;
-    overview: string;
-    genres: string[];
-    revenue: number;
-    duration: number;
-    likes: number;
-    vote_average: number;
-    vote_count: number;
-    director?: string;
-    poster_path?: string;
-    release_date: string;
-};
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import IconButton from '@material-ui/core/IconButton';
 
-export const MovieItem = (props: MovieItemT) => {
+const useStyles = makeStyles({
+    card: {
+        maxWidth: 390,
+        margin: '10px 0',
+    },
+    media: {
+        height: 160,
+    },
+});
+
+export const MovieItem = (props: MoviesList) => {
     const {
         id,
         title,
@@ -33,57 +40,69 @@ export const MovieItem = (props: MovieItemT) => {
         poster_path,
         release_date,
     } = props;
-    const [isFavor, setFavor] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const setFavor = () => {
+        dispatch(addFavorite(id));
+    };
+
+    const classes = useStyles();
 
     return (
-        <div className='list__item' data-favor={isFavor ? YES : ``}>
-            <div>
-                <b>ID:</b> {id}
-            </div>
-            <div>
-                <b>Title:</b> {title}
-            </div>
-            <div>
-                <b>imdb_id:</b> {imdb_id}
-            </div>
-            <div>
-                <b>Overview:</b> {overview}
-            </div>
-            <div>
-                <b>Genres:</b> {genres.join(', ')}
-            </div>
-            <div>
-                <b>Revenue:</b> {revenue}
-            </div>
-            <div>
-                <b>Duration:</b> {duration}
-            </div>
-            <div>
-                <b>Likes:</b> {likes}
-            </div>
-            <div>
-                <b>Vote average:</b> {vote_average}
-            </div>
-            <div>
-                <b>Vote count:</b> {vote_count}
-            </div>
-            <div>
-                <b>Director:</b> {director}
-            </div>
-            <div>
-                <b>Poster:</b> {poster_path}
-            </div>
-            <div>
-                <b>Release date:</b> {release_date}
-            </div>
-
-            <button
-                onClick={() => {
-                    setFavor(!isFavor);
-                }}
-            >
-                {isFavor ? DONT_LIKE_IT : LIKE_IT}
-            </button>
-        </div>
+        <Grid item xs={4}>
+            <Card className={classes.card}>
+                <CardActionArea>
+                    <CardMedia
+                        className={classes.media}
+                        image={`${MOVIES_URL}${poster_path}`}
+                        title='Contemplative Reptile'
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant='h5' component='h2'>
+                            {title}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            {id}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            {overview}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>imdb_id:</b> {imdb_id}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Genres:</b> {genres.join(', ')}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Revenue:</b> {revenue}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Duration:</b> {duration}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Likes:</b> {likes}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Vote average:</b> {vote_average}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Vote count:</b> {vote_count}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Director:</b> {director}
+                        </Typography>
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                            <b>Release date:</b> {release_date}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <IconButton onClick={setFavor} color='default'>
+                        <FavoriteIcon />
+                    </IconButton>
+                </CardActions>
+            </Card>
+        </Grid>
     );
 };

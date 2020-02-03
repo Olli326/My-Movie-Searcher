@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addFavorite } from '../../reduxSetup/actions';
 import { MOVIES_URL } from '../../constants';
@@ -39,6 +39,7 @@ export const MovieItem = (props: MoviesList) => {
         director,
         poster_path,
         release_date,
+        isFav,
     } = props;
 
     const dispatch = useDispatch();
@@ -98,7 +99,7 @@ export const MovieItem = (props: MoviesList) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <IconButton onClick={setFavor} color='default'>
+                    <IconButton onClick={setFavor} color={isFav ? 'secondary' : 'default'}>
                         <FavoriteIcon />
                     </IconButton>
                 </CardActions>

@@ -1,4 +1,4 @@
-import { MOVIES_ADD, FAV_ADD } from './actionsTypes';
+import { MOVIES_ADD, FAV_ADD, MOVIE_SEARCH } from './actionsTypes';
 
 const initialState: RootStore = { list: [] };
 
@@ -17,10 +17,24 @@ const actionHanlder = new Map<string, RootReducer>([
             return {
                 ...state,
                 list: state.list.map((movie: MoviesList) => {
-                    return movie.id === action.payload ? {...movie, 
-                        isFav: !movie.isFav} : movie
-                 })
-            }
+                    return movie.id === action.payload ? { ...movie, isFav: !movie.isFav } : movie;
+                }),
+            };
+        },
+    ],
+    [
+        MOVIE_SEARCH,
+        (state, action: Action<ActionsT>) => {
+            //const { list } = state;
+            return {
+                ...state,
+                list: state.list.filter(list => list.title.includes(action.payload)),
+                //list: list.filter(e => e.title === action.payload),
+                // ...state,
+                // list: state.list.map((movie: MoviesList) => {
+                //     return movie.title === action.payload ? { ...movie, action.payload } : movie;
+                // }),
+            };
         },
     ],
     ['DEFAULT_PLUG', (state: RootStore) => state],

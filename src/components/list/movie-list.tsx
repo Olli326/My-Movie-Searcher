@@ -12,9 +12,7 @@ export const MovieList = () => {
         fetch(`${MOVIES_URL}/v1/movies`)
             .then(response => response.json())
             .then(json => {
-                json.map((item: MoviesList[]) => {
-                    dispatch(addMovies(item));
-                });
+                dispatch(addMovies(json));
             });
     }, []);
     return (

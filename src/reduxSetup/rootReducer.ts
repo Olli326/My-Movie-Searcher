@@ -5,29 +5,22 @@ const initialState: RootStore = { list: [] };
 const actionHanlder = new Map<string, RootReducer>([
     [
         MOVIES_ADD,
-        (state, action: Action<MoviesList>) => {
-            const { list } = state;
+        (state, action: Action<ActionsT>) => {
             return {
-                list: [...list, action.payload],
+                list: action.payload,
             };
         },
     ],
     [
         FAV_ADD,
         (state, action: Action<ActionsT>) => {
-            const { list } = state;
             return {
-                list: list.map(item => {
-                    if (item.id === action.payload) {
-                        return {
-                            ...item,
-                            isFav: true,
-                        };
-                    } else {
-                        return item;
-                    }
-                }),
-            };
+                ...state,
+                list: state.list.map((movie: MoviesList) => {
+                    return movie.id === action.payload ? {...movie, 
+                        isFav: !movie.isFav} : movie
+                 })
+            }
         },
     ],
     ['DEFAULT_PLUG', (state: RootStore) => state],

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchMovies } from '../../reduxSetup/actions';
 
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { Container } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -59,16 +60,27 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: 200,
             },
         },
+        margin: {
+            margin: theme.spacing(1),
+        },
     })
 );
 
-const dispatch = useDispatch();
-const handleCommentChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(searchMovies(e.currentTarget.value));
-};
-
 export function Header() {
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+
+    const [title, setTitle] = useState<string>('');
+    const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value);
+    };
+
+    const searchMovie = () => {
+        if (title) {
+            dispatch(searchMovies(title));
+        }
+    };
 
     return (
         <div className={classes.root}>
@@ -89,9 +101,19 @@ export function Header() {
                                     input: classes.inputInput,
                                 }}
                                 inputProps={{ 'aria-label': 'search' }}
-                                onChange={handleCommentChange}
+                                onChange={handleTitleChange}
+                                value={title}
                             />
                         </div>
+                        <Button
+                            onClick={searchMovie}
+                            variant='contained'
+                            size='medium'
+                            color='primary'
+                            className={classes.margin}
+                        >
+                            Search
+                        </Button>
                     </Toolbar>
                 </Container>
             </AppBar>

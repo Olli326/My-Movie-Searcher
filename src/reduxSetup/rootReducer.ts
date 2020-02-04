@@ -25,15 +25,11 @@ const actionHanlder = new Map<string, RootReducer>([
     [
         MOVIE_SEARCH,
         (state, action: Action<ActionsT>) => {
-            //const { list } = state;
             return {
                 ...state,
-                list: state.list.filter(list => list.title.includes(action.payload)),
-                //list: list.filter(e => e.title === action.payload),
-                // ...state,
-                // list: state.list.map((movie: MoviesList) => {
-                //     return movie.title === action.payload ? { ...movie, action.payload } : movie;
-                // }),
+                list: state.list.filter((movie: MoviesList) => {
+                    return movie.title.toUpperCase().includes(action.payload.toUpperCase());
+                }),
             };
         },
     ],

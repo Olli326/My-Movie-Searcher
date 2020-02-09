@@ -27,9 +27,9 @@ const actionHanlder = new Map<string, RootReducer>([
         (state, action: Action<ActionsT>) => {
             return {
                 ...state,
-                list: state.list.filter((movie: MoviesList) => {
-                    return movie.title.toUpperCase().includes(action.payload.toUpperCase());
-                }),
+                list: state.list.filter((movie: MoviesList) =>
+                    movie.title.toUpperCase().includes(action.payload.toUpperCase())
+                ),
             };
         },
     ],

@@ -1,4 +1,4 @@
-import { MOVIES_ADD, FAV_ADD, MOVIE_SEARCH } from './actionsTypes';
+import { MOVIES_ADD, FAV_ADD, MOVIE_SEARCH, MOVIE_FILTRE_GENRE } from './actionsTypes';
 
 export const addMovies = (newElement: MoviesList[]) => ({
     type: MOVIES_ADD,
@@ -12,4 +12,8 @@ export const addFavorite = (id: number) => ({
 export const searchMovies = (title: string) => ({
     type: MOVIE_SEARCH,
     payload: title,
+});
+export const filtreGenre = (genres: string) => ({
+    type: MOVIE_FILTRE_GENRE,
+    payload: genres,
 });

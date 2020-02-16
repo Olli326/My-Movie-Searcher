@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import { Header } from './components/header/header';
-import { MovieList } from './components/list/movie-list';
-import { FavoriteList } from './components/list/favorite-list';
+import { Header } from './components/Header/Header';
+import { MovieList } from './components/List/MovieList';
+import { FavoriteList } from './components/List/FavoriteList';
+import { ListGenres } from './components/Header/ListGenres';
 
 import { Container } from '@material-ui/core';
 
@@ -11,6 +12,7 @@ const App: React.FC = () => {
         <div className='App'>
             <Header />
             <Container>
+                <ListGenres />
                 <MovieList />
                 <FavoriteList />
             </Container>

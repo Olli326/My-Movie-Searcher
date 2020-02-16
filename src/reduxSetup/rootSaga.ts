@@ -1,6 +1,6 @@
 import { all, fork, put, call } from 'redux-saga/effects';
 import { addMovies } from '../reduxSetup/actions';
-import { API_URL_MOVIE } from '../constants';
+import { API_URL_MOVIE } from '../constants/api';
 
 function* fetchMovie() {
     try {

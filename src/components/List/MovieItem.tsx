@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addFavorite } from '../../reduxSetup/actions';
-import { API_URL } from '../../constants';
+import { API_URL } from '../../constants/api';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -44,7 +44,7 @@ export const MovieItem = (props: MoviesList) => {
         director,
         poster_path,
         release_date,
-        isFav,
+        isFavorite,
     } = props;
 
     const dispatch = useDispatch();
@@ -100,7 +100,7 @@ export const MovieItem = (props: MoviesList) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <IconButton onClick={setFavor} color={isFav ? 'secondary' : 'default'}>
+                    <IconButton onClick={setFavor} color={isFavorite ? 'secondary' : 'default'}>
                         <FavoriteIcon />
                     </IconButton>
                 </CardActions>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { MovieItem } from './movie-item';
+import { MovieItem } from './MovieItem';
 
 export const MovieList = () => {
     const infoMovies = useSelector<RootStore, MoviesList[]>(state => state.list);

@@ -12,7 +12,7 @@ type MoviesList = {
     director?: string;
     poster_path?: string;
     release_date: string;
-    isFav?:boolean;
+    isFavorite?: boolean;
 };
 
 type RootStore = { list: MoviesList[] };

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMovies } from '../../reduxSetup/actions';
-import { MovieItem } from './movie-item';
-import { MOVIES_URL } from '../../constants';
+import { MovieItem } from './MovieItem';
+import { MOVIES_URL } from '../../constants/api';
 
 export const MovieList = () => {
     const infoMovies = useSelector<RootStore, MoviesList[]>(state => state.list);

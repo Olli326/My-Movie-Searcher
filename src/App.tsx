@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { Header } from './components/header/header';
-import { MovieList } from './components/list/movie-list';
+import { Header } from './components/Header/Header';
+import { MovieList } from './components/List/MovieList';
 
 import { Container } from '@material-ui/core';
 

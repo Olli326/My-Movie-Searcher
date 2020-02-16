@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addFavorite } from '../../reduxSetup/actions';
-import { MOVIES_URL } from '../../constants';
+import { MOVIES_URL } from '../../constants/api';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';

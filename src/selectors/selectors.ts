@@ -13,7 +13,7 @@ const listMovies = (state: RootStore) => {
         return state.list;
     }
 
-    if (search.length > 1) {
+    if (search.length) {
         return state.search;
     }
 

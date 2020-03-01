@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addFavorite } from '../../reduxSetup/actions';
 import { MOVIES_URL } from '../../constants/api';
@@ -21,6 +21,11 @@ const useStyles = makeStyles({
     },
     media: {
         height: 160,
+        width: 'auto',
+    },
+    action: {
+        display: 'flex',
+        alignItems: 'flex-start',
     },
 });
 
@@ -39,6 +44,7 @@ export const MovieItem = (props: MoviesList) => {
         director,
         poster_path,
         release_date,
+        isFavorite,
     } = props;
 
     const dispatch = useDispatch();
@@ -52,19 +58,15 @@ export const MovieItem = (props: MoviesList) => {
     return (
         <Grid item xs={4}>
             <Card className={classes.card}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={`${MOVIES_URL}${poster_path}`}
-                        title='Contemplative Reptile'
-                    />
+                <CardActionArea className={classes.action}>
+                    <CardMedia component='img' className={classes.media} image={`${MOVIES_URL}${poster_path}`} />
                     <CardContent>
                         <Typography gutterBottom variant='h5' component='h2'>
                             {title}
                         </Typography>
-                        <Typography variant='body2' color='textSecondary' component='p'>
+                        {/* <Typography variant='body2' color='textSecondary' component='p'>
                             {id}
-                        </Typography>
+                        </Typography> */}
                         <Typography variant='body2' color='textSecondary' component='p'>
                             {overview}
                         </Typography>
@@ -80,25 +82,25 @@ export const MovieItem = (props: MoviesList) => {
                         <Typography variant='body2' color='textSecondary' component='p'>
                             <b>Duration:</b> {duration}
                         </Typography>
-                        <Typography variant='body2' color='textSecondary' component='p'>
+                        {/* <Typography variant='body2' color='textSecondary' component='p'>
                             <b>Likes:</b> {likes}
-                        </Typography>
+                        </Typography> */}
                         <Typography variant='body2' color='textSecondary' component='p'>
                             <b>Vote average:</b> {vote_average}
                         </Typography>
                         <Typography variant='body2' color='textSecondary' component='p'>
                             <b>Vote count:</b> {vote_count}
                         </Typography>
-                        <Typography variant='body2' color='textSecondary' component='p'>
+                        {/* <Typography variant='body2' color='textSecondary' component='p'>
                             <b>Director:</b> {director}
-                        </Typography>
+                        </Typography> */}
                         <Typography variant='body2' color='textSecondary' component='p'>
                             <b>Release date:</b> {release_date}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <IconButton onClick={setFavor} color='default'>
+                    <IconButton onClick={setFavor} color={isFavorite ? 'secondary' : 'default'}>
                         <FavoriteIcon />
                     </IconButton>
                 </CardActions>

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { FavoriteList } from './components/list/FavoriteList';
 import { Header } from './components/Header/Header';
 import { MovieList } from './components/List/MovieList';
 
@@ -11,6 +12,7 @@ const App: React.FC = () => {
             <Header />
             <Container>
                 <MovieList />
+                <FavoriteList />
             </Container>
         </div>
     );

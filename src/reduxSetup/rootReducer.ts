@@ -17,7 +17,7 @@ const actionHanlder = new Map<string, RootReducer>([
             return {
                 ...state,
                 list: state.list.map((movie: MoviesList) => {
-                    return movie.id === action.payload ? { ...movie, isFav: !movie.isFav } : movie;
+                    return movie.id === action.payload ? { ...movie, isFavorite: !movie.isFavorite } : movie;
                 }),
             };
         },

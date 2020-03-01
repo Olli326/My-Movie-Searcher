@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { MovieItem } from './movie-item';
+import { MovieItem } from './MovieItem';
 import { favoriteMovies } from '../../selectors/selectors';
 
 import Typography from '@material-ui/core/Typography';

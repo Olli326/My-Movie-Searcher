@@ -1,5 +1,5 @@
 import { all, fork, put, call } from 'redux-saga/effects';
-import { addMovies } from '../reduxSetup/actions';
+import { addAllMovies } from '../reduxSetup/actions';
 import { API_URL_MOVIE } from '../constants/api';
 
 function* fetchMovie() {
@@ -7,7 +7,7 @@ function* fetchMovie() {
         const data = yield call(() => {
             return fetch(API_URL_MOVIE).then(res => res.json());
         });
-        yield put(addMovies(data));
+        yield put(addAllMovies(data));
     } catch (error) {
         console.log(error);
     }

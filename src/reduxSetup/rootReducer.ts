@@ -1,13 +1,14 @@
-import { MOVIES_ADD, FAV_ADD, MOVIE_SEARCH, MOVIE_FILTRE_GENRE } from './actionsTypes';
+import { MOVIES_ADD, FAV_ADD, MOVIE_SEARCH, MOVIE_FILTRE_GENRE, ALL_MOVIES_ADD } from './actionsTypes';
 
-const initialState: RootStore = { list: [] };
+const initialState: RootStore = { list: [], search: [], genres: [] };
 
 const actionHanlder = new Map<string, RootReducer>([
     [
-        MOVIES_ADD,
-        (state, action: Action<ActionsT>) => {
+        ALL_MOVIES_ADD,
+        (state, action: Action<ActionsT[]>) => {
             return {
-                list: action.payload,
+                ...state,
+                list: [...state.list, ...action.payload],
             };
         },
     ],
@@ -27,7 +28,7 @@ const actionHanlder = new Map<string, RootReducer>([
         (state, action: Action<ActionsT>) => {
             return {
                 ...state,
-                list: state.list.filter((movie: MoviesList) =>
+                search: state.list.filter((movie: MoviesList) =>
                     movie.title.toUpperCase().includes(action.payload.toUpperCase())
                 ),
             };
@@ -38,7 +39,12 @@ const actionHanlder = new Map<string, RootReducer>([
         (state, action: Action<ActionsT>) => {
             return {
                 ...state,
-                list: state.list.filter((movie: MoviesList) => movie.genres.includes(action.payload)),
+                genres: Array.from(
+                    new Set([
+                        ...state.genres,
+                        ...state.list.filter((movie: MoviesList) => movie.genres.includes(action.payload)),
+                    ])
+                ),
             };
         },
     ],

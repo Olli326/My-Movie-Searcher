@@ -15,10 +15,10 @@ type MoviesList = {
     isFavorite?: boolean;
 };
 
-type RootStore = { list: MoviesList[] };
+type RootStore = { list: MoviesList[]; search: [] | any; genres: [] | any };
 
 type Action<T> = { type: string; payload: T };
 
-type ActionsT = typeof MOVIES_ADD | 'DEFAULT_PLUG';
+type ActionsT = typeof MOVIES_ADD | typeof MOVIES_ALL_ADD | 'DEFAULT_PLUG';
 
 type RootReducer<T = ActionsT> = (state: RootStore, action: Action<T>) => RootStore;

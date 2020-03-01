@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { listGenres } from '../../selectors/selectors';
 import { filtreGenre } from '../../reduxSetup/actions';
 
@@ -8,9 +8,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export const ListGenres = () => {
+    const dispatch = useDispatch();
+
     const [state, setState] = useState<any>({});
     const handleChange = (name: string) => (event: ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, [name]: event.target.checked });
+        if (event.target.checked) {
+            dispatch(filtreGenre(name));
+        }
     };
 
     const infoMovies = useSelector<RootStore, MoviesList[]>(state => state.list);
@@ -28,6 +33,7 @@ export const ListGenres = () => {
                         <FormControlLabel
                             control={<Checkbox checked={state.item} onChange={handleChange(item)} value={item} />}
                             label={item}
+                            key={item}
                         />
                     );
                 })}

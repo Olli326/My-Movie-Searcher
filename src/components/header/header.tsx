@@ -75,10 +75,14 @@ export function Header() {
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value);
     };
+    const resetInputField = () => {
+        setTitle('');
+    };
 
     const searchMovie = () => {
         if (title) {
             dispatch(searchMovies(title));
+            resetInputField();
         }
     };
 

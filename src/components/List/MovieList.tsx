@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { MovieItem } from './MovieItem';
+import { selectMovies } from '../../selectors/selectors';
 
 export const MovieList = () => {
-    const infoMovies = useSelector<RootStore, MoviesList[]>(state => state.list);
+    const infoMovies = useSelector<RootStore, MoviesList[]>(selectMovies);
 
     return (
         <div className='list'>

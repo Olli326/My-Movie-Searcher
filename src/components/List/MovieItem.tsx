@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addFavorite } from '../../reduxSetup/actions';
-import { MOVIES_URL } from '../../constants/api';
+import { API_URL } from '../../constants/api';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -59,7 +59,7 @@ export const MovieItem = (props: MoviesList) => {
         <Grid item xs={4}>
             <Card className={classes.card}>
                 <CardActionArea className={classes.action}>
-                    <CardMedia component='img' className={classes.media} image={`${MOVIES_URL}${poster_path}`} />
+                    <CardMedia component='img' className={classes.media} image={`${API_URL}${poster_path}`} />
                     <CardContent>
                         <Typography gutterBottom variant='h5' component='h2'>
                             {title}

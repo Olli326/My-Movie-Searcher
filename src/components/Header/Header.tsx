@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchMovies } from '../../reduxSetup/actions';
 
@@ -72,13 +72,16 @@ export function Header() {
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState<string>('');
-    const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value);
+    const handleTitleChange = useCallback(e => setTitle(e.currentTarget.value), []);
+    // useCallback(e => setValue(e.target.value), []);
+    const resetInputField = () => {
+        setTitle('');
     };
 
     const searchMovie = () => {
         if (title) {
             dispatch(searchMovies(title));
+            resetInputField();
         }
     };
 

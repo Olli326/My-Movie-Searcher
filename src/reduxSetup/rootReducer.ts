@@ -1,4 +1,11 @@
-import { MOVIES_ADD, FAV_ADD, MOVIE_SEARCH, MOVIE_FILTRE_GENRE, ALL_MOVIES_ADD } from './actionsTypes';
+import {
+    MOVIES_ADD,
+    FAV_ADD,
+    MOVIE_SEARCH,
+    MOVIE_FILTRE_GENRE,
+    ALL_MOVIES_ADD,
+    DEL_MOVIE_FILTRE_GENRE,
+} from './actionsTypes';
 
 const initialState: RootStore = { list: [], search: [], genres: [] };
 
@@ -44,6 +51,17 @@ const actionHanlder = new Map<string, RootReducer>([
                         ...state.genres,
                         ...state.list.filter((movie: MoviesList) => movie.genres.includes(action.payload)),
                     ])
+                ),
+            };
+        },
+    ],
+    [
+        DEL_MOVIE_FILTRE_GENRE,
+        (state, action: Action<ActionsT>) => {
+            return {
+                ...state,
+                genres: Array.from(
+                    new Set([...state.genres.filter((movie: MoviesList) => !movie.genres.includes(action.payload))])
                 ),
             };
         },

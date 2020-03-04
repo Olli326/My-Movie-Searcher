@@ -1,4 +1,11 @@
-import { MOVIES_ADD, FAV_ADD, MOVIE_SEARCH, MOVIE_FILTRE_GENRE, ALL_MOVIES_ADD } from './actionsTypes';
+import {
+    MOVIES_ADD,
+    FAV_ADD,
+    MOVIE_SEARCH,
+    MOVIE_FILTRE_GENRE,
+    ALL_MOVIES_ADD,
+    DEL_MOVIE_FILTRE_GENRE,
+} from './actionsTypes';
 
 export const addMovies = (payload: MoviesList) => ({
     type: MOVIES_ADD,
@@ -19,5 +26,9 @@ export const searchMovies = (title: string) => ({
 });
 export const filtreGenre = (genres: string) => ({
     type: MOVIE_FILTRE_GENRE,
+    payload: genres,
+});
+export const delFiltreGenre = (genres: string) => ({
+    type: DEL_MOVIE_FILTRE_GENRE,
     payload: genres,
 });

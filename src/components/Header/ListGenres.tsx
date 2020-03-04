@@ -1,7 +1,7 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listGenres } from '../../selectors/selectors';
-import { filtreGenre } from '../../reduxSetup/actions';
+import { filtreGenre, delFiltreGenre } from '../../reduxSetup/actions';
 
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -15,6 +15,8 @@ export const ListGenres = () => {
         setState({ ...state, [name]: event.target.checked });
         if (event.target.checked) {
             dispatch(filtreGenre(name));
+        } else {
+            dispatch(delFiltreGenre(name));
         }
     };
 
